@@ -1,0 +1,5 @@
+input: "SAMPLESHEET.csv"
+pseudo_aligner: "salmon"
+genome: "hg38"
+outdir: "20250326_scomics_results"
+multiqc_title: "20250326_scomics_results_align"
