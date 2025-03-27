@@ -59,5 +59,6 @@ summary(data7[,1:8])
 # condition setup
 overview <- read.table("data/spectronaut/MM_A1_SCMO001_directDIA_matching_default_set_ConditionSetup.tsv",
                        header = T,
-                       sep = "\t")
+                       sep = "\t",
+                       comment.char = ">")
 
