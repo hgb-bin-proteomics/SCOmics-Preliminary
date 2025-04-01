@@ -30,5 +30,6 @@ colnames(cor_data) <- data$PG.ProteinGroups
 pg_cor <- cor(cor_data, method = "pearson", use = "pairwise.complete.obs")
 # https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html
 corrplot(pg_cor, method = "color", type = "lower", tl.pos = "n")
+corrplot(pg_cor, method = "color", order = "hclust", hclust.method = "centroid", tl.pos = "n")
 #heatmap(pg_cor, Rowv = NA, Colv = NA)
 
