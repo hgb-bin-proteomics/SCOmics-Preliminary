@@ -17,7 +17,7 @@ proteomics_data = RRI
 counts <- "data/ngs/salmon.merged.gene_counts.tsv"
 counts_scaled <- "data/ngs/salmon.merged.gene_counts_scaled.tsv"
 counts_scaled_len <- "data/ngs/salmon.merged.gene_counts_length_scaled.tsv"
-transcriptomics_data <- counts_scaled_len
+transcriptomics_data <- counts
 use <- SC_RRI
 
 normalize_proteomics = T
