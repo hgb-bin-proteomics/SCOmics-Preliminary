@@ -98,5 +98,6 @@ cor_data_ngs <- cor_data_ngs[,genes]
 cor_data_multi <- t(rbind(cor_data, cor_data_ngs))
 cor_multi <- cor(cor_data_multi, method = "pearson", use = "pairwise.complete.obs")
 corrplot(cor_multi, method = "color", tl.col = "black")
-corrplot(cor_multi, method = "color", order = "hclust", hclust.method = "centroid", tl.col = "black")
-corrplot(cor_multi, method = "color", order = "hclust", hclust.method = "centroid", tl.col = "black", addCoef.col = "white")
+corrplot(cor_multi, method = "color", tl.col = "black", addCoef.col = "white")
+#corrplot(cor_multi, method = "color", order = "hclust", hclust.method = "centroid", tl.col = "black")
+#corrplot(cor_multi, method = "color", order = "hclust", hclust.method = "centroid", tl.col = "black", addCoef.col = "white")
