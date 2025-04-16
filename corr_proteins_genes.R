@@ -55,7 +55,7 @@ normalized <- if (normalize_proteomics) proDA::median_normalization(data_m) else
 cor_data <- data.frame(t(normalized))
 colnames(cor_data) <- data$PG.ProteinGroups
 
-# pg_cor <- cor(cor_data, method = "pearson", use = "pairwise.complete.obs")
+#pg_cor <- cor(cor_data, method = "pearson", use = "pairwise.complete.obs")
 # https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html
 #corrplot(pg_cor, method = "color", type = "lower", tl.pos = "n")
 #corrplot(pg_cor, method = "color", order = "hclust", hclust.method = "centroid", tl.pos = "n")
@@ -76,19 +76,23 @@ data_ngs <- data_ngs[,keep_cols]
 data_ngs[data_ngs==0] = NA
 data_ngs <- data_ngs[complete.cases(data_ngs),]
 
+# get genes
+rna_genes <- data_ngs$gene_name
+
 # median normalization
 data_m_ngs <- data.matrix(data_ngs[,2:6])
 normalized_ngs <- if (normalize_transcriptomics) proDA::median_normalization(data_m_ngs) else data_m_ngs
 
 cor_data_ngs <- data.frame(t(normalized_ngs))
+colnames(cor_data_ngs) <- data_ngs$gene_name
+
+#g_cor <- cor(cor_data_ngs, method = "pearson", use = "pairwise.complete.obs")
+#corrplot(g_cor, method = "color", order = "hclust", hclust.method = "centroid", tl.pos = "n")
 
 #### INTEGRATION ####
 
 row.names(cor_data_ngs) <- row.names(cor_data)
-colnames(cor_data_ngs) <- data_ngs$gene_name
 colnames(cor_data) <- data$PG.Genes
-
-rna_genes <- data_ngs$gene_name
 
 genes <- base::intersect(protein_genes, rna_genes)
 
