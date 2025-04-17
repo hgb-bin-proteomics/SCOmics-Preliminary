@@ -108,10 +108,10 @@ ui <- page_sidebar(
 server <- function(input, output){
   
   #### RNAseq Sample Annotation ####
-  # A1-E1
-  SC_RRI <- c(345275:345279)
-  # A2-E2
-  SC_noRRI <- c(345283:345287)
+  # Prot: B20-B24
+  SC_RRI <- c(345279:345275)
+  # Prot: A20-A24
+  SC_noRRI <- c(345287:345283)
   
   data <- reactive({
     
@@ -278,12 +278,12 @@ server <- function(input, output){
     req(data())
     
     use = if (input$rri) SC_RRI else SC_noRRI
-    use_p = if (input$rri) "PROT_B" else "PROT_A"
-    ms_sample_names = c("20", "21", "22", "23", "24")
+    rownames_rri = c("cell e", "cell d", "cell c", "cell b", "cell a")
+    rownames_norri = c("cell m", "cell l", "cell k", "cell j", "cell i")
     
     # set row names for plot
-    rownames_prot <- paste(use_p, ms_sample_names, sep = "")
-    rownames_rna <- paste("RNA_", use, sep = "")
+    rownames_prot <- if (input$rri) paste(rownames_rri, "PROT", sep = " ") else paste(rownames_norri, "PROT", sep = " ")
+    rownames_rna <- if (input$rri) paste(rownames_rri, "RNA", sep = " ") else paste(rownames_norri, "RNA", sep = " ")
     
     #### PROTEOMICS ####
     
@@ -344,6 +344,9 @@ server <- function(input, output){
     colnames(cor_data) <- data$PG.Genes
     row.names(cor_data_ngs) <- rownames_rna
     row.names(cor_data) <- rownames_prot
+    
+    cor_data <- cor_data[sort(rownames_prot),]
+    cor_data_ngs <- cor_data_ngs[sort(rownames_rna),]
     
     genes <- base::intersect(protein_genes, rna_genes)
     
