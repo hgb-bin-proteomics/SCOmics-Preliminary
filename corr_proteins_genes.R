@@ -3,10 +3,10 @@ library(proDA)
 library(corrplot)
 
 #### RNAseq Sample Annotation ####
-# A1-E1
-SC_RRI <- c(345275:345279)
-# A2-E2
-SC_noRRI <- c(345283:345287)
+# Prot: B20-B24
+SC_RRI <- c(345279:345275)
+# Prot: A20-A24
+SC_noRRI <- c(345287:345283)
 
 #### PARAMETERS ####
 
@@ -70,6 +70,7 @@ data_ngs <- read.table(transcriptomics_data,
 keep_cols <- c("gene_name",
                paste("X", use, sep = ""))
 data_ngs <- data_ngs[,keep_cols]
+summary(data_ngs)
 
 # remove missing values
 # real zero or technical zeros?
