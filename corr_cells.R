@@ -3,10 +3,10 @@ library(proDA)
 library(corrplot)
 
 #### RNAseq Sample Annotation ####
-# A1-E1
-SC_RRI <- c(345275:345279)
-# A2-E2
-SC_noRRI <- c(345283:345287)
+# Prot: B20-B24
+SC_RRI <- c(345279:345275)
+# Prot: A20-A24
+SC_noRRI <- c(345287:345283)
 
 #### PARAMETERS ####
 
@@ -24,8 +24,8 @@ normalize_proteomics = T
 normalize_transcriptomics = T
 
 # set row names for plot
-rownames_prot <- c("Prot_B20", "Prot_B21", "Prot_B22", "Prot_B23", "Prot_B24")
-rownames_rna <- paste("RNA_", use, sep = "")
+rownames_prot <- c("cell e PROT", "cell d PROT", "cell c PROT", "cell b PROT", "cell a PROT")
+rownames_rna <- c("cell e RNA", "cell d RNA", "cell c RNA", "cell b RNA", "cell a RNA")
 
 #### PROTEOMICS ####
 
@@ -90,6 +90,9 @@ colnames(cor_data) <- data$PG.Genes
 row.names(cor_data_ngs) <- rownames_rna
 row.names(cor_data) <- rownames_prot
 
+cor_data <- cor_data[sort(rownames_prot),]
+cor_data_ngs <- cor_data_ngs[sort(rownames_rna),]
+
 genes <- base::intersect(protein_genes, rna_genes)
 
 cor_data <- cor_data[,genes]
@@ -97,7 +100,7 @@ cor_data_ngs <- cor_data_ngs[,genes]
 
 cor_data_multi <- t(rbind(cor_data, cor_data_ngs))
 cor_multi <- cor(cor_data_multi, method = "pearson", use = "pairwise.complete.obs")
-corrplot(cor_multi, method = "color", tl.col = "black")
+#corrplot(cor_multi, method = "color", tl.col = "black")
 corrplot(cor_multi, method = "color", tl.col = "black", addCoef.col = "white")
 #corrplot(cor_multi, method = "color", order = "hclust", hclust.method = "centroid", tl.col = "black")
 #corrplot(cor_multi, method = "color", order = "hclust", hclust.method = "centroid", tl.col = "black", addCoef.col = "white")
