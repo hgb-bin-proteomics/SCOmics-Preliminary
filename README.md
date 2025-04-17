@@ -20,7 +20,7 @@ Example data is available upon reasonable request.
 ## Screenshots
 
 - **RRI sample using raw gene counts**
-  ![Screenshot1](screenshots/rri_counts_pn_tn.png)
+  ![Screenshot1](screenshots/rri_counts_pn_tn.jpg)
 
 ## Contact
 
