@@ -1,5 +1,10 @@
+install.packages("shiny")
+install.packages("bslib")
 install.packages("tidyverse")
 install.packages("corrplot")
+install.packages("httr")
+install.packages("jsonlite")
+install.packages("ggsci")
 
 if(!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
