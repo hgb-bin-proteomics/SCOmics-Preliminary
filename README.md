@@ -14,7 +14,11 @@ Example data is available upon reasonable request.
 - Install the [required packages](_install.R).
 - In an R shell run:
   ```R
-  shiny::runApp()
+  shiny::runApp("shiny-1")
+  ```
+  _or_
+  ```R
+  shiny::runApp("shiny-2")
   ```
 
 ## Screenshots
